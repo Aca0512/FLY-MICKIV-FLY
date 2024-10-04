@@ -1,0 +1,405 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #fcfdfd;
+    text-align: center;
+}
+
+#game-container {
+    position: relative;
+    width: 100%;
+    height: 98%;
+    overflow: hidden;
+    border: 8px solid #000;
+    border-radius: 8px;
+    background-image: url('image/Asset 19.png'); /* Ganti dengan path gambar Anda */
+    background-size: 200% auto; /* Memperpanjang ukuran latar belakang agar bisa menyambung */
+    background-position: 0 0; /* Posisi awal latar belakang */
+    animation: backgroundScroll 10s linear infinite; /* Animasi scrolling latar belakang */
+    transform: translateZ(0);
+}
+
+@keyframes backgroundScroll {
+    0% { background-position: 0 0; } /* Mulai dari posisi awal */
+    100% { background-position: 100% 0; } /* Latar belakang bergeser penuh ke kiri */
+}
+
+#bird {
+    position: absolute;
+    width: 100px; /* Lebar gambar burung */
+    height: 110px; /* Tinggi gambar burung */
+    background-image: url('image/atas.png'); /* Ganti dengan gambar pertama */
+    background-size: cover;
+    top: 50%;
+    left: 10vw; /* Menyesuaikan posisi horizontal */
+    transform: translateY(-50%);
+    animation: flyAnimation 0.8s linear infinite; /* Sesuaikan durasi jika perlu */
+}
+
+@keyframes flyAnimation {
+    0% {
+        background-image: url('image/1\ .png');
+    }
+    16.67% {
+        background-image: url('image/2.png');
+    }
+    33.33% {
+        background-image: url('image/3.png');
+    }
+    50% {
+        background-image: url('image/4.png');
+    }
+    66.67% {
+        background-image: url('image/5.png');
+    }
+    83.33% {
+        background-image: url('image/6.png');
+    }
+    100% {
+        background-image: url('image/atas.png');
+    }
+}
+
+.pipe {
+    position: absolute;
+    width: 120px;
+    height: 100px;
+    background-image: url('image/Asset 21.png'); /* Replace with the path to your pipe image */
+    background-size: 75%;
+    background-repeat: no-repeat;
+    top: -20px;
+    right: 0;
+    animation: growShrinkPipe 3s infinite ease-in-out; /* Apply the animation */
+}
+@keyframes growShrinkPipe {
+    0% {
+        transform: scale(1); /* Start at normal size */
+    }
+    50% {
+        transform: scale(1.15); /* Return to normal size */
+    }
+    100% {
+        transform: scale(1); /* Return to normal size */
+    }
+}
+
+.pipe-bottom {
+    height: auto;
+    top: auto;
+    bottom: 0;
+}
+
+#score-board {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 26px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.9); /* Teks juga sedikit transparan */
+    font-family: 'Press Start 2P', cursive;
+    background: linear-gradient(45deg, rgba(43, 151, 240, 0.7), rgba(24, 111, 224, 0.7), rgba(35, 213, 171, 0.7)); /* Latar belakang transparan */
+    border: 3px solid rgba(18, 116, 185, 0.7); /* Border dengan transparansi */
+    border-radius: 12px;
+    padding: 12px 25px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.4), 0px 0px 12px rgba(39, 117, 255, 0.4); /* Efek shadow lebih ringan */
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5); /* Sedikit transparansi pada shadow teks */
+    z-index: 10;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+    backdrop-filter: blur(2px); /* Efek blur latar belakang untuk fokus */
+    animation: fadeIn 1s ease-out, scoreIncrease 0.5s ease-in-out;
+    display: none;
+}
+
+/* Efek hover untuk interaksi */
+#score-board:hover {
+    transform: translateX(-50%) scale(1.05);
+    background: linear-gradient(45deg, rgba(35, 213, 171, 0.7), rgba(43, 151, 240, 0.7), rgba(24, 111, 224, 0.7)); /* Gradasi transparan berubah saat hover */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5), 0px 0px 15px rgba(39, 117, 255, 0.5); /* Glow lebih ringan */
+}
+
+@keyframes scoreIncrease {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+#score-board {
+    animation: fadeIn 1s ease-out;
+}
+
+.button {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.button a {
+    color: white;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #1a75d6; /* Blue background color */
+    display: block;
+    position: relative;
+    padding: 20px 40px;
+    text-shadow: 0px 1px 0px #000;
+    box-shadow: inset 0 1px 0 #0056b3, 0 10px 0 #004085; /* Adjusted to match the blue theme */
+    border-radius: 5px;
+}
+
+.button a:active {
+    top: 10px;
+    background-color: #0056b3; /* Darker blue for active state */
+    box-shadow: inset 0 1px 0 #004085, inset 0 -3px 0 #003060; /* Adjusted to match the blue theme */
+}
+
+.button:after {
+    content: "";
+    height: 100%;
+    width: 100%;
+    padding: 4px;
+    position: absolute;
+    bottom: -15px;
+    left: -4px;
+    z-index: -1;
+    background-color: #1f85f1; /* Blue shadow color */
+    border-radius: 5px;
+}
+
+/* Container dan tombol kontrol */
+#controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 200px;
+}
+
+#controls button {
+    background-color: #FFA12B;
+    color: white;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    border: none;
+    padding: 15px 30px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-shadow: 0px 1px 0px #000;
+    box-shadow: inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
+}
+
+#controls button:active {
+    top: 2px;
+    background-color: #F78900;
+    box-shadow: inset 0 1px 0 #FFE5C4, inset 0 -3px 0 #915100;
+}
+
+.pipe-top {
+    position: absolute;
+    width: 110px;
+    height: 150px;
+    background-image: url('image/Asset 20.png'); /* Replace with the path to your pipe image */
+    background-size: 80%;
+    background-repeat: no-repeat;
+    top: 0;
+    right: 0;
+    transform: rotate(180deg); /* Rotate the top pipe to face downward */
+    animation: growShrinkPipeTop 4s infinite ease-in-out; /* Apply the grow/shrink animation */
+}
+
+@keyframes growShrinkPipeTop {
+    0% {
+        transform: scale(1) rotate(180deg); /* Initial size with rotation */
+    }
+    50% {
+        transform: scale(1.15) rotate(180deg); /* Grow to 115% with rotation */
+    }
+    100% {
+        transform: scale(1) rotate(180deg); /* Shrink back to original size with rotation */
+    }
+}
+
+#game-over-screen {
+    display: none;
+    position: absolute;
+    height: 250px;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: rgba(1, 1, 1, 1);
+    color: #fafdf9;
+    padding: 20px;
+    border-radius: 10px;
+    background-image: url('image/Asset 19.png');
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Lapisan hitam semi-transparan */
+    background-blend-mode: darken; /* Menggabungkan gambar dan warna */
+    border: 4px solid #0a0000;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    animation: fade-in 0.5s ease-in-out;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 40px;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+#game-over-screen h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #f1f3f0;/* Or any desired color */
+}
+
+#game-over-screen p {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#game-over-screen button {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    background: linear-gradient(to right, #4CAF50, #339966);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    border: #4CAF50 solid 3px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    animation: pulse-shadow 1.2s ease-in-out infinite;
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+#game-over-screen button {
+    animation: bounceIn 0.8s ease-out;
+}
+
+#game-over-screen button:hover {
+    background: linear-gradient(to right, #339966, #4CAF50);
+    transform: scale(1.05);
+}
+
+/* Make sure the game container has a position set so the game-over screen can position correctly */
+#game-container {
+    position: relative;
+} 
+
+@media (max-width: 768px) {
+    #score-board {
+        font-size: 20px;
+        padding: 8px 16px;
+    }
+    #bird {
+        width: 80px;
+        height: 90px;
+    }
+    .pipe {
+        width: 100px;
+        height: 80px;
+    }
+}
+
+#Mickiv {
+    width: 100px;
+    height: auto;
+    position: absolute;
+    left: -100px;
+    bottom: 90px;
+    animation: flyRight 10s ease-in-out infinite;
+}
+
+.mickiv-frame {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    animation: walk 3s steps(3) infinite;
+}
+ 
+/* Animasi berjalan */
+@keyframes walk {
+    0% { opacity: 1; }
+    25% { opacity: 0; }
+    50% { opacity: 1; }
+    75% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes flyRight {
+    0% { transform: translateX(-100%); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateX(100vw); opacity: 0; }
+}
+
+#game-title {
+    position: relative;
+    right: -350px;
+    bottom: -100px;
+    font-family: 'Super Bubbly', cursive;
+    letter-spacing: -0.02em;
+    color: #00CCDD; /* Main text color - blue */
+    font-size: 6rem; /* Increased font size */
+    font-weight: bold; /* Make the text thicker */
+    overflow: hidden; /* Hide the text initially */
+    white-space: nowrap; /* Ensure the text doesn't wrap */
+    border-right: 0.10em solid currentColor; /* Create a cursor-like effect */
+    width: 0; /* Start with zero width to prevent duplication */
+    animation: typing 6s steps(20, end) infinite, cursor-blink 1s step-end infinite;
+
+    /* Add blue outline to the text */
+    text-shadow: 
+      -3px 3px 0 #6439FF,  
+       1px -1px 0 #2c8dce,
+       1px  1px 0 #73909c,
+       -2px -2px 0 #6439FF;
+}
+
+@keyframes typing {
+    0% { width: 0; }
+    50% { width: 60%; } /* Animate to full width */
+    100% { width: 0; } /* Reset back to 0 for continuous typing effect */
+}
+
+@keyframes cursor-blink {
+    from { border-right-color: #38a9e2; } /* Blue cursor */
+    to { border-right-color: transparent; }
+}
+

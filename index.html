@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Fly Mickiv Fly</title>
+ <link rel="icon" href="image/2.png" sizes="64x64" type="image/png">
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <div id="game-container">
+ <!-- Character Image -->
+ <div id="start-screen">
+    <!-- Tampilan start game -->
+    <h1 id="game-title">FLY MICKIV FLY</h1> <!-- Game Title -->
+    <div id="Mickiv">
+        <img src="image/1Mickiv-sprite.png" class="mickiv-frame">
+        <img src="image/2Mickiv-sprite.png" class="mickiv-frame">
+        <img src="image/3Mickiv-sprite.png" class="mickiv-frame">
+    </div>
+    <!-- Start Button -->
+    <div class="button" id="start-button">
+        <a href="#">Start Game</a>
+    </div>
+</div>
+
+<div id="game-screen" style="display: none;">
+    <!-- Tampilan game -->
+    <!-- Isi game di sini -->
+</div>
+
+ <div id="bird" style="display: none;"></div>
+ <div id="score-board">Score: 0</div>
+
+ <!-- Pipes -->
+ <div class="pipe pipe-top" style="display: none;"></div>
+ <div class="pipe pipe-bottom" style="display: none;"></div>
+
+ <!-- Game Over Screen -->
+ <div id="game-over-screen" style="display: none;">
+ <h1>Game Over</h1>
+ <p id="final-score"></p>
+ <button id="restart-button">Restart Game</button>
+ </div>
+ </div>
+ <script src="script.js"></script>
+</body>
+</html>
