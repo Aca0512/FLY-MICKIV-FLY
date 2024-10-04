@@ -189,3 +189,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Show Mickiv initially on the start screen
     mickiv.style.display = 'block';
 });
+
+// Control bird jump on keydown (for desktop)
+document.addEventListener('keydown', () => {
+    if (isGameOver) return;
+    birdTop -= jumpHeight;
+});
+
+// Control bird jump on touchstart (for mobile and tablet)
+document.addEventListener('touchstart', () => {
+    if (isGameOver) return;
+    birdTop -= jumpHeight;
+});
