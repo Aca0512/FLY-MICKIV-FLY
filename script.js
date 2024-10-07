@@ -201,3 +201,48 @@ document.addEventListener('touchstart', () => {
     if (isGameOver) return;
     birdTop -= jumpHeight;
 });
+
+function resizeGameElements() {
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+
+    const pipeElements = document.querySelectorAll('.pipe');
+    const birdElement = document.querySelector('.bird');
+
+    // Adjust pipe size based on screen width
+    pipeElements.forEach(pipe => {
+        if (screenWidth < 768) {
+            pipe.style.width = "30px";
+            pipe.style.height = "60px";
+        } else if (screenWidth < 480) {
+            pipe.style.width = "20px";
+            pipe.style.height = "40px";
+        } else {
+            pipe.style.width = "50px";
+            pipe.style.height = "100px";
+        }
+    });
+
+    // Adjust bird size based on screen width
+    if (screenWidth < 768) {
+        birdElement.style.width = "30px";
+        birdElement.style.height = "60px";
+    } else if (screenWidth < 480) {
+        birdElement.style.width = "20px";
+        birdElement.style.height = "40px";
+    } else {
+        birdElement.style.width = "50px";
+        birdElement.style.height = "100px";
+    }
+
+    // Adjust the position dynamically based on the height
+    // Example: Adjust bird's top position based on screen size
+    birdElement.style.top = (screenHeight / 2 - birdElement.offsetHeight / 2) + "px";
+}
+
+// Call resize function on window resize or orientation change
+window.addEventListener('resize', resizeGameElements);
+window.addEventListener('orientationchange', resizeGameElements);
+
+// Call once to initialize
+resizeGameElements();
