@@ -246,3 +246,34 @@ window.addEventListener('orientationchange', resizeGameElements);
 
 // Call once to initialize
 resizeGameElements();
+
+// Get the start button element
+const startGameButton = document.getElementById('startGame');
+
+// Function to enter full screen and lock orientation to landscape
+function requestFullscreen() {
+  const gameCanvas = document.getElementById('gameCanvas');
+  
+  // Request fullscreen mode
+  if (gameCanvas.requestFullscreen) {
+    gameCanvas.requestFullscreen();
+  } else if (gameCanvas.webkitRequestFullscreen) { // Safari support
+    gameCanvas.webkitRequestFullscreen();
+  } else if (gameCanvas.msRequestFullscreen) { // IE/Edge support
+    gameCanvas.msRequestFullscreen();
+  }
+
+  // Lock orientation to landscape
+  if (screen.orientation && screen.orientation.lock) {
+    screen.orientation.lock('landscape').catch(function(error) {
+      console.log('Orientation lock failed:', error);
+    });
+  }
+}
+
+// Handle exit fullscreen (optional)
+document.addEventListener('fullscreenchange', () => {
+  if (!document.fullscreenElement) {
+    console.log('Exited fullscreen mode');
+  }
+});
