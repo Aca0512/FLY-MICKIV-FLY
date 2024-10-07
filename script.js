@@ -14,6 +14,11 @@ let pipeSpeed = 3;
 let pipeFrequency = 1500;
 let gameLoopInterval;
 
+// Mencegah layar membesar saat touchmove
+document.addEventListener('touchmove', function(event) {
+    event.preventDefault();
+});
+
 // Function to start the game
 function startGame() {
     isGameOver = false;
@@ -201,4 +206,3 @@ document.addEventListener('touchstart', () => {
     if (isGameOver) return;
     birdTop -= jumpHeight;
 });
-
