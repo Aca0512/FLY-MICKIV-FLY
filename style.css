@@ -403,25 +403,3 @@ body {
     to { border-right-color: transparent; }
 }
 
-/* Default desktop styles */
-.pipe, .bird {
-    width: 50px;
-    height: 100px;
-    position: absolute;
-    bottom: 0;
-}
-
-/* Responsive styles for mobile devices */
-@media only screen and (max-width: 768px) {
-    .pipe, .bird {
-        width: 30px; /* Make pipes and bird smaller */
-        height: 60px;
-    }
-}
-
-@media only screen and (max-width: 480px) {
-    .pipe, .bird {
-        width: 20px;
-        height: 40px;
-    }
-}
