@@ -511,3 +511,31 @@ body {
         display: block;
     }
 }
+
+html, body, #game-container {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#game-container {
+    position: relative;
+    display: block;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#bird {
+    position: absolute;
+    width: 5%;
+    height: auto;
+}
+
+.pipe {
+    position: absolute;
+    width: 10%;
+    height: auto;
+}
