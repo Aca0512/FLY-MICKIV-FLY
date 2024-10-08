@@ -225,3 +225,82 @@ window.addEventListener('orientationchange', function() {
         alert('Mohon putar perangkat Anda ke mode landscape untuk pengalaman bermain yang lebih baik.');
     }
 });
+
+function openFullscreen() {
+    const elem = document.documentElement; // Mengambil elemen <html> sebagai referensi
+
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) { // Firefox
+        elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+        elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { // IE/Edge
+        elem.msRequestFullscreen();
+    }
+}
+
+function startGame() {
+    // Aktifkan layar penuh saat game dimulai
+    openFullscreen();
+
+    // Logika memulai game lainnya
+    isGameOver = false;
+    score = 0;
+    pipeSpeed = 3;
+    pipeFrequency = 1500;
+    birdTop = 250;
+    bird.style.top = `${birdTop}px`;
+    bird.style.display = 'block';
+    scoreBoard.style.display = 'block';
+    scoreBoard.textContent = `Score: ${score}`;
+    startButton.style.display = 'none';
+    document.getElementById('game-over-screen').style.display = 'none';
+    mickiv.style.display = 'none';
+    document.getElementById('game-title').style.display = 'none';
+
+    document.querySelectorAll('.pipe').forEach(pipe => pipe.remove());
+
+    gameContainer.style.animation = 'backgroundScroll 10s linear infinite';
+
+    createPipe();
+    if (gameLoopInterval) {
+        cancelAnimationFrame(gameLoopInterval);
+    }
+    gameLoop();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Deteksi perangkat mobile atau tablet
+    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        openFullscreen(); // Otomatis masuk ke layar penuh pada mobile
+    }
+});
+
+function closeFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) { // Firefox
+        document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) { // Chrome, Safari, and Opera
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { // IE/Edge
+        document.msExitFullscreen();
+    }
+}
+
+function gameOver() {
+    isGameOver = true;
+    bird.style.display = 'none';
+    document.querySelectorAll('.pipe').forEach(pipe => pipe.remove());
+
+    const gameOverScreen = document.getElementById('game-over-screen');
+    const finalScore = document.getElementById('final-score');
+    finalScore.textContent = `Final Score: ${score}`;
+    gameOverScreen.style.display = 'block';
+    
+    scoreBoard.style.display = 'none';
+
+    // Kembali ke mode normal setelah game over
+    closeFullscreen();
+}
