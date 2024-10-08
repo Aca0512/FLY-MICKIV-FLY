@@ -206,3 +206,22 @@ document.addEventListener('touchstart', () => {
     if (isGameOver) return;
     birdTop -= jumpHeight;
 });
+
+function lockOrientationLandscape() {
+    if (screen.orientation && screen.orientation.lock) {
+        screen.orientation.lock('landscape').catch(function(error) {
+            console.log('Orientation lock failed: ', error);
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Cobalah mengunci orientasi layar ke landscape saat halaman dimuat
+    lockOrientationLandscape();
+});
+
+window.addEventListener('orientationchange', function() {
+    if (window.orientation === 0 || window.orientation === 180) {
+        alert('Mohon putar perangkat Anda ke mode landscape untuk pengalaman bermain yang lebih baik.');
+    }
+});
