@@ -407,3 +407,107 @@ body {
     to { border-right-color: transparent; }
 }
 
+/* Untuk layar dengan lebar maksimum 768px (tablet dan ponsel) */
+@media (max-width: 768px) {
+    #game-container {
+        width: 100vw;
+        height: 100vh;
+        border-width: 5px; /* Menyesuaikan ukuran border */
+    }
+
+    #bird {
+        width: 80px;  /* Mengurangi ukuran burung */
+        height: 90px;
+        left: 5vw; /* Mengurangi posisi kiri pada perangkat yang lebih kecil */
+    }
+
+    .pipe, .pipe-top {
+        width: 90px;  /* Sesuaikan ukuran pipa */
+        height: auto;
+    }
+
+    #score-board {
+        font-size: 20px; /* Mengurangi ukuran teks */
+        padding: 8px 16px;
+    }
+
+    #game-over-screen {
+        width: 80vw;
+        height: 40vh;
+        padding: 20px;
+        font-size: 16px;
+    }
+
+    #game-over-screen h1 {
+        font-size: 24px;
+    }
+
+    #game-over-screen button {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+}
+
+/* Untuk layar dengan lebar maksimum 480px (ponsel kecil) */
+@media (max-width: 480px) {
+    #game-container {
+        width: 100vw;
+        height: 100vh;
+        border-width: 3px;
+    }
+
+    #bird {
+        width: 60px; /* Ukuran lebih kecil untuk ponsel kecil */
+        height: 70px;
+    }
+
+    .pipe, .pipe-top {
+        width: 70px;  /* Ukuran pipa lebih kecil */
+    }
+
+    #score-board {
+        font-size: 18px;
+        padding: 6px 12px;
+    }
+
+    #game-over-screen {
+        width: 75vw;
+        height: 30vh;
+    }
+
+    #game-over-screen h1 {
+        font-size: 20px;
+    }
+
+    #game-over-screen button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+@media screen and (orientation: landscape) {
+    #game-container {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #bird {
+        width: 10vw; /* Sesuaikan dengan tampilan landscape */
+        height: auto;
+    }
+
+    .pipe {
+        width: 10vw; /* Sesuaikan ukuran pipa */
+    }
+}
+
+@media screen and (orientation: portrait) {
+    #game-container {
+        display: none; /* Sembunyikan game di mode portrait jika diinginkan */
+    }
+
+    /* Anda juga dapat menambahkan pesan untuk meminta pengguna memutar perangkat */
+    #rotate-message {
+        display: block;
+    }
+}
